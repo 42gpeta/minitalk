@@ -1,0 +1,3 @@
+[submodule "minitalk/lib/libft"]
+	path = minitalk/lib/libft
+	url = git@github.com:42gpeta/libft.git
