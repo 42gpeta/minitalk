@@ -30,9 +30,9 @@ SRC_DIR		:= src
 SRCS		:= \
 client.c \
 server.c \
+error.c \
 
-# error.c \
-list.c \
+# list.c \
 list_utils.c \
 print.c \
 

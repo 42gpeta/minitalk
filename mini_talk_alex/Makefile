@@ -5,7 +5,7 @@ SRCS2 = client.c error.c pid.c
 OBJS = $(SRCS:.c=.o)
 OBJS2 = $(SRCS2:.c=.o)
 CC = cc
-C_FLAGS = -Wextra -Wall -Werror
+# C_FLAGS = -Wextra -Wall -Werror
 RM = rm -f
 LIBFT = libft/libft.a
 
