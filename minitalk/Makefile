@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: glodi <glodi@student.42.fr>                +#+  +:+       +#+         #
+#    By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/11 18:34:10 by gpeta             #+#    #+#              #
-#    Updated: 2023/07/14 17:00:32 by glodi            ###   ########.fr        #
+#    Updated: 2023/07/17 17:06:05 by gpeta            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,7 @@ DEPS2		:= $(OBJS2:.o=.d)
 
 CC 			:= cc
 # CFLAGS 		:= -Wall -Wextra -Werror 
-CFLAGS 		:= -Wextra -Werror 
+# CFLAGS 		:= -Wextra
 CPPFLAG		:= $(addprefix -I ,$(INCS)) -MMD -MP
 LDFLAGS		:= $(addprefix -L ,$(dir $(LIBS_TARGET)))
 LDLIBS		:= $(addprefix -l ,$(LIBS))
