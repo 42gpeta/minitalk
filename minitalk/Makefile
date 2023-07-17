@@ -3,14 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+         #
+#    By: glodi <glodi@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/11 18:34:10 by gpeta             #+#    #+#              #
-#    Updated: 2023/07/13 19:24:57 by gpeta            ###   ########.fr        #
+#    Updated: 2023/07/14 17:00:32 by glodi            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME 		:= minitalk
+NAME 		:= server
+NAME2 		:= client
 
 #-------------------------------------------------------#
 #	INGREDIENTS											#
@@ -28,8 +29,11 @@ lib/libft/include \
 
 SRC_DIR		:= src
 SRCS		:= \
-client.c \
 server.c \
+error.c \
+
+SRCS2		:= \
+client.c \
 error.c \
 
 # list.c \
@@ -38,13 +42,17 @@ print.c \
 
 
 SRCS		:= $(SRCS:%=$(SRC_DIR)/%)
+SRCS2		:= $(SRCS2:%=$(SRC_DIR)/%)
 
 BUILD_DIR	:= .build
 OBJS		:= $(SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
+OBJS2		:= $(SRCS2:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 DEPS		:= $(OBJS:.o=.d)
+DEPS2		:= $(OBJS2:.o=.d)
 
 CC 			:= cc
-CFLAGS 		:= -Wall -Wextra -Werror 
+# CFLAGS 		:= -Wall -Wextra -Werror 
+CFLAGS 		:= -Wextra -Werror 
 CPPFLAG		:= $(addprefix -I ,$(INCS)) -MMD -MP
 LDFLAGS		:= $(addprefix -L ,$(dir $(LIBS_TARGET)))
 LDLIBS		:= $(addprefix -l ,$(LIBS))
@@ -62,11 +70,17 @@ DIR_DUP		= mkdir -p $(@D)
 #	RECIPES												#
 #-------------------------------------------------------#
 
-all : $(NAME)
+all : $(NAME) $(NAME2)
 
 $(NAME): $(OBJS) $(LIBS_TARGET)
 	$(CC) -g $(LDFLAGS) $(OBJS) $(LDLIBS) $(MLX_FLAGS) -o $(NAME)
 	$(info EXE ./$(NAME) CREATED)
+#	$(CC) -g $(LDFLAGS) $(OBJS) $(LDLIBS) $(MLX_FLAGS) -o $(NAME)
+
+$(NAME2): $(OBJS2) $(LIBS_TARGET)
+	$(CC) -g $(LDFLAGS) $(OBJS2) $(LDLIBS) -o $(NAME2)
+	$(info EXE ./$(NAME2) CREATED)
+#	$(CC) -g $(LDFLAGS) $(OBJS2) $(LDLIBS) $(MLX_FLAGS) -o $(NAME2)
 
 $(LIBS_TARGET):
 	$(MAKE) -C $(@D)
@@ -79,10 +93,12 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 clean:
 	for f in $(dir $(LIBS_TARGET)) ; do $(MAKE) -C $$f clean; done
 	$(RM) $(OBJS) $(DEPS)
+	$(RM) $(OBJS2) $(DEPS2)
 
 fclean: clean
 	for f in $(strip(dir $(LIBS_TARGET))) ; do $(MAKE) -C $$f fclean; done
 	$(RM) $(NAME)
+	$(RM) $(NAME2)
 
 re:
 	$(MAKE) fclean
