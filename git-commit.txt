@@ -1,0 +1,9 @@
+b620a7f ajout gitignore pour les modifs dans mini_talk_alex
+cbde7e8 v 1.0 : affichage du PID dans server.c
+0039747 ajout submodule libft
+e712397 arborescence projet
+6e1861d reflexion sur le sujet (maj READ ME)
+b362761 arret : Intercepter un signal avec sigaction voir readme
+576ddac duplication du processusfils
+58ebae6 identification des PID Père et Fils
+3f11b90 Initial commit
